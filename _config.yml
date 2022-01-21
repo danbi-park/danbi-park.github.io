@@ -25,7 +25,7 @@ url                      : "https://danbi-park.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "danbi-park/danbi-park.github.io"
 teaser                   : "/assets/images/teaser.jpg"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "/assets/images/logo/88x88.png"
 masthead_title           : "가보자고"
 # breadcrumbs            : true # true, false (default)
 words_per_minute         : 200
