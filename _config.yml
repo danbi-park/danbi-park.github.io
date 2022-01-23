@@ -284,7 +284,19 @@ defaults:
     values:
       layout: single
       author_profile: true
+      read_time: true 
+      comments: true # 댓글 활성화
+      share: true
+      related: true
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true

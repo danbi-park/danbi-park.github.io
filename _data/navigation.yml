@@ -1,10 +1,9 @@
 # main links
   main:
-  - title: "Categories"
-    url: /_posts/categories/
-  - title: "Tags"
-    url: /_posts/tags/
   - title: "About"
-    url: /_posts/about/
-  - title: "연도별 포스트"
-    url: /_posts/posts/
+    url: /about/
+  - title: "Category"
+    url: /category/
+  - title: "Tags"
+    url: /tags/
+
