@@ -7,3 +7,26 @@
   - title: "Tags"
     url: /tags/
 
+docs:
+  - title: Programming
+    children:
+      - title: "Java"
+        url: java/
+        category: "java"
+        
+  # - title: Database
+  #   children:
+  #     - title: "Oracle"
+  #       url: oracle/
+  #       category: "oracle"
+  #     - title: "MS-SQL"
+  #       url: mssql/
+  #       category: "mssql"
+  #     - title: "MariaDB"
+  #       url: mariadb/
+  #       category: "mariadb"
+  # - title: Etc
+  #   children:
+  #     - title: "Jekyll"
+  #       url: jekyll/
+  #       category: "jekyll"
