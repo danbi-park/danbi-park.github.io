@@ -1,0 +1,49 @@
+---
+permalink: /category/
+title:  "Java의 반복문"
+excerpt: "while문, do while문, for문"
+toc: true
+toc_sticky: true
+toc_label: "반복문"
+categories:
+  - Java
+tags:
+  - Java
+last_modified_at: 2022-01-28
+---
+
+
+# do while문
+while문의 경우 조건이 만족하지 않는다면 한번도 반복하지 않을 수 있다.하지만, do while문의 경우는 **무조건 한번은 실행되는** 반복문이다.
+
+```java
+    do{
+        //실제로 반복할 문장들, 실행문!;
+    }while(조건문); //실행문을 무조건 한 번은 실행 후 조건문이 만족할 때 다시 do로 올라감
+```
+
+#### 🤔 언제 쓰일까?
+어쨌든 한 번은 ! 입력받고 싶고 
+
+### ✍ do-while 실습
+```java
+    import java.util.Scanner;
+
+    public class DoWhileExam {
+
+        public static void main(String[] args) {
+            int value = 0;
+
+            // Scanner는 java.util 패키지에 있는 클래스로써 키보드로 부터 값을 입력받는다던지 할 때 유용하게 사용할 수 있는 클래스
+            Scanner scan = new Scanner(System.in);
+            //키보드로부터 값을 입력받을 수 있는 Scanner객체가 생성된다. 
+
+            do{
+                value = scan.nextInt(); // Scanner클래스를 이용하여 키보드로 부터 숫자값을 입력받는다.
+                System.out.println("입력받은 수 : " + value);  
+            }while(value != 10);  // 입력받은 값이 10이 아닐 경우에는 계속 반복한다.
+
+            System.out.println("반복문 종료");
+        }
+    }
+```
