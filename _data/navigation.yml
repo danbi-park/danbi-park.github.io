@@ -2,10 +2,8 @@
   main:
   - title: "About"
     url: /about/
-  - title: "Category"
-    url: /category/
-  - title: "Tags"
-    url: /tags/
+  - title: "Categories"
+    url: /categories/
 
 docs:
   - title: Programming
