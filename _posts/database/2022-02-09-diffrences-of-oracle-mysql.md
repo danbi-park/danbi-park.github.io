@@ -5,9 +5,9 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 categories:
-  - DataBase
+  - dataBase
 tags:
-  - DataBase
+  - dataBase
   - Oracle
   - MySQL
   - MariaDB

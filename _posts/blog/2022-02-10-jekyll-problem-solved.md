@@ -5,7 +5,7 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 categories:
-  - 개발도구
+  - blog
 tags:
   - jekyll
   - github

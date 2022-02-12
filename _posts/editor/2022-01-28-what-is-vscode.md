@@ -5,7 +5,7 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 categories:
-  - 개발도구
+  - editor
 tags:
   - VSCode
 last_modified_at: 2022-02-02
