@@ -17,7 +17,14 @@ last_modified_at: 2022-02-02
 # 유용한 확장프로그램 
 
 확장 프로그램 단축키 : [Ctrl + Shift + x]
-@enabled
+
+확장 프로그램 탭에서 검색란에 @을 치면 여러가지 기능이 또 있다. 
+
+<img width="293" alt="image" src="https://user-images.githubusercontent.com/86641773/153710268-ded10e12-d6f0-4c61-8781-af48971d5d37.png">
+
+@enabled : 현재 쓰고 있는 앱들 표시
+
+
 
 
 # 단축키

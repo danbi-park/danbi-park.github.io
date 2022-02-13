@@ -62,7 +62,7 @@ JSON과 XML은 다음과 같은 공통점을 가지고 있습니다.
 ```
 
 ## JSON의 사용 범위
-XML 문서는 **XML DOM(Document Object Model)**을 이용하여 해당 문서에 접근합니다.
+XML 문서는 <strong>XML DOM(Document Object Model)</strong>을 이용하여 해당 문서에 접근합니다.
 
 하지만 JSON은 문자열을 전송받은 후에 해당 문자열을 바로 파싱하므로, XML보다 더욱 빠른 처리 속도를 보여줍니다.
 
