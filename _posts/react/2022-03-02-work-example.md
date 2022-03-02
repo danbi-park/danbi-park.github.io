@@ -12,11 +12,16 @@ tags:
 last_modified_at: 2022-03-02
 ---
 
-간단한 흐름
+#### 요약
+- 서버단에서 GetMapping으로 Url을 요청 받을 시 보여줄 정보를 연결.
+- 리액트에서 Service 파일에 axios로 서버단에서 만든 Url 연결 및 메소드 생성
+- 보여줄 컴포넌트 만들고 Service import해서 정보 꺼내기
+- App.js에 Url과 컴포넌트 라우팅 연결
+
 
 먼저 TestService에서 axios로 들고올 Url을 설정한다.
 
-`TestService.js`
+#### `TestService.js`
 ```jsx
 import axios from "axios";
 
@@ -37,7 +42,7 @@ export default new TestService();
 그럼 axios가 "http://localhost:8080/demo" 을 통해 정보를 get해올 수 있다 그 중에 getTests라는 메소드에 "http://localhost:8080/demo/test"에서 정보를 들고오는 axios를 정의해준다. 
 
 아래는 8080서버단의 controller에서 해당 매핑으로 들고오는 정보들이다. 
-`DemoController.java`
+#### `DemoController.java`
 ```java
     @GetMapping("/demo/test")
     public List<Demo> getAllBoards() {
@@ -48,7 +53,7 @@ export default new TestService();
 Demo의 정보들을 JPA를 통해 가져온다. *JSON방식으로 들고옴 
 이후 TestComponent를 만들어준다.
 
-`TestComponent.jsx`
+#### `TestComponent.jsx`
 ```jsx
 import React, { Component } from 'react';
 import TestService from '../service/TestService'; //1. 작성한 TestService를 import해준다. 
@@ -118,7 +123,7 @@ export default TestComponent;
 ```
 
 이제 컴포넌트를 만들었으니 실제로 보여줄 곳에 이 컴포넌트를 넣어줄 것이다. 
-App.js
+#### `App.js`
 ```jsx
 import './App.css';
 import './js/main.js';
