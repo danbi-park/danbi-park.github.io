@@ -15,7 +15,7 @@ last_modified_at: 2022-03-06
 ## JPA 구동 방식
 
 
-<!-- ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a3e86e21-2ad0-4293-a372-648c87397824/Untitled.png) -->
+<img alt="image" src="https://user-images.githubusercontent.com/86641773/156928786-e967c865-4959-4491-aa5a-31e4426cb1b8.png">
 
 제일 처음 persistence.xml에서 설정 정보를 조회 한 후 persistence에서 먼저 persistence unit 이름을 전달 받은 후 엔티티 매니저 팩토리를 반환한다. 
 
@@ -23,7 +23,8 @@ last_modified_at: 2022-03-06
 
 **JpaMain 클래스 생성**
 
-<!-- ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/13f7db10-0fee-4921-ab57-628fe5d3eab2/Untitled.png) -->
+
+<img width="187" align="center"alt="image" src="https://user-images.githubusercontent.com/86641773/156928840-f16f2cdf-df6b-435e-b2bc-0a41e7daa182.png">
 
 ```java
 package hellojpa;
