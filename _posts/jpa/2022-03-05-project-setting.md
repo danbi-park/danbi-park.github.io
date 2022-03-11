@@ -23,12 +23,11 @@ Maven선택 후 이름 지정
 - **Version**: 1.0-SNAPSHOT
 
 #### groupId, ArtifactId, version 설명
-    
-**groupId**
-    
-> groupId uniquely identifies your project across all projects. A group ID should follow Java's package name rules. This means it starts with a reversed domain name you control. For example, org.apache.maven, org.apache.commons Maven does not enforce this rule. There are many legacy projects that do not follow this convention and instead use single word group IDs. However, it will be difficult to get a new single word group ID approved for inclusion in the Maven Central repository. You can create as many subgroups as you want. A good way to determine the granularity of the groupId is to use the project structure. That is, if the current project is a multiple module project, it should append a new identifier to the parent's groupId. For example, org.apache.maven, org.apache.maven.plugins, org.apache.maven.reporting
-> 
+
+**groupId**  
+> groupId uniquely identifies your project across all projects. A group ID should follow Java's package name rules. This means it starts with a reversed domain name you control. For example, org.apache.maven, org.apache.commons Maven does not enforce this rule. There are many legacy projects that do not follow this convention and instead use single word group IDs. However, it will be difficult to get a new single word group ID approved for inclusion in the Maven Central repository. You can create as many subgroups as you want. A good way to determine the granularity of the groupId is to use the project structure. That is, if the current project is a multiple module project, it should append a new identifier to the parent's groupId. For example, org.apache.maven, org.apache.maven.plugins, org.apache.maven.reporting  
 - 모든 프로젝트 중에서 당신의 프로젝트를 식별하게 해주는 식별자
+- 
 - groupId는 Java의 패키지 이름 규칙을 따라야 함 즉 제어하는 도메인 이름의 반대로 시작
 
 ex) org.apache.maven, org.apache.commons
@@ -61,15 +60,11 @@ ex) org.apache.maven, org.apache.maven.plugins, org.apache.maven.reporting
 
 
 ## 의존 설정(Dependencies)
-
 ---
-
-우선 Hibernate 를 추가해줄 것인데, 제일 최근 버전은 아래 Hibernate 페이지에서 확인할 수 있다.
-
+우선 Hibernate 를 추가해줄 것인데, 제일 최근 버전은 아래 Hibernate 페이지에서 확인할 수 있다.  
+![image](https://user-images.githubusercontent.com/86641773/157887873-5eb57453-817c-4495-8227-0fd24e4bc23a.png)  
 ### Hibernate 개념
-    
 #### Hibernate ORM
-
 Hibernate ORM은 **자바 언어를 위한 객체 관계 매핑 프레임워크**이다.
 
 간단히 말해 관계형 디비 테이블을 자바 객체로 맵핑 시켜 사용하겠다는 것이다.
@@ -77,7 +72,7 @@ Hibernate ORM은 **자바 언어를 위한 객체 관계 매핑 프레임
 **키워드**
 >OneToOne, OneToMany, ManyToOne, ManyToMany, Primary Key, Composite Primary Key, join table, SubSelect, NamedNativeQuery, Unidirectional, Bidirectional , HQL, Fetch LAZY, Fetch EAGER, orphanRemoval, Cascade, Extends Dialect, Column LAZY Loading ....
 
-    
+
 ### ORM 의 장점/단점
 
 **장점**

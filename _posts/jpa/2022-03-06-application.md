@@ -14,7 +14,6 @@ last_modified_at: 2022-03-06
 
 ## JPA 구동 방식
 
-
 <img alt="image" src="https://user-images.githubusercontent.com/86641773/156928786-e967c865-4959-4491-aa5a-31e4426cb1b8.png">
 
 제일 처음 persistence.xml에서 설정 정보를 조회 한 후 persistence에서 먼저 persistence unit 이름을 전달 받은 후 엔티티 매니저 팩토리를 반환한다. 
@@ -23,8 +22,8 @@ last_modified_at: 2022-03-06
 
 **JpaMain 클래스 생성**
 
-
-<img width="187" align="center"alt="image" src="https://user-images.githubusercontent.com/86641773/156928840-f16f2cdf-df6b-435e-b2bc-0a41e7daa182.png">
+![image](https://user-images.githubusercontent.com/86641773/157886217-33c354e3-2742-45ee-ac51-639ff0c95c4e.png)
+  
 
 ```java
 package hellojpa;
@@ -48,13 +47,13 @@ public class JpaMain {
     }
 }
 ```
-
+  
 ## 객체와 테이블을 생성하고 매핑하기
 
-<!-- ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cb141db8-02c2-4905-b01f-d9444ed41f0b/Untitled.png) -->
-
-유의할 점은 JDBC URL은 앞서 persistence.xml에서 설정한 url 경로와 맞춰줘야한다.
-
+![image](https://user-images.githubusercontent.com/86641773/157886357-3acd5307-da27-4374-9cb5-bdbf255c96d0.png)
+  
+유의할 점은 JDBC URL은 앞서 persistence.xml에서 설정한 url 경로와 맞춰줘야한다.  
+  
 ```xml
 <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
 ```
@@ -69,8 +68,8 @@ create table Member (
 )
 ```
 
-<!-- ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/23a305e7-13d4-4722-a997-98535331dd44/Untitled.png) -->
-
+![image](https://user-images.githubusercontent.com/86641773/157886500-ab5db4c6-77c4-4d3e-8f3d-c3c1197a7e27.png)
+   
 클래스로도 하나 만들어준다.
 
 ```java
@@ -210,21 +209,18 @@ Hibernate:
 이제 로그에 위처럼 Hibernate가 나오는 설정은 persistence.xml에서 했었음!
 
 - persistence 설정 내용 설명
-    
-    콘솔에 하이버네이트가 실행하는 SQL문 출력  (`hibernate.show_sql`)
-    
-    출력 시 보기 쉽게 정렬 (`hibernate.format_sql`)
-    
-    주석처리는 왜 이 쿼리문이 나왔는지 보여줌.(`hibernate.use_sql_comments`)
-    
+  - 콘솔에 하이버네이트가 실행하는 SQL문 출력  (`hibernate.show_sql`)
+  - 출력 시 보기 쉽게 정렬 (`hibernate.format_sql`)
+  - 주석처리는 왜 이 쿼리문이 나왔는지 보여줌.(`hibernate.use_sql_comments`)
 
-<!-- **H2-db에서 결과 확인:** 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/aadc79d8-edca-4986-b926-4d929fed838f/Untitled.png) -->
+**H2-db에서 결과 확인:** 
 
-이처럼 직접 쿼리문을 직접 쓰지않고 JPA가 매핑 정보를 보고 쿼리를 생성해준다.
+![image](https://user-images.githubusercontent.com/86641773/157886610-73932b5e-bf9b-46f0-9552-03937f07b347.png)   
 
-어떻게 알아서 Member테이블에 insert 됐을까?
+이처럼 직접 쿼리문을 직접 쓰지않고 JPA가 매핑 정보를 보고 쿼리를 생성해준다.  
+
+어떻게 알아서 Member테이블에 insert 됐을까?  
 
 관례적인 부분으로 같은 클래스 이름이 되어있어 저장된 것이고 만약 Member클래스에 @Table(name = "USER") 어노테이션이 있으면 쿼리가 나갈 때 User테이블에 저장된다.
 
@@ -268,18 +264,18 @@ Member findMember = em.find(Member.class, 1L);
 System.out.println("ID: "+findMember.getId());
 System.out.println("NAME: "+findMember.getName());
 ```
-
+결과 :  
 ```
 Hibernate: 
-    **select**
+    select
         member0_.id as id1_0_0_,
         member0_.name as name2_0_0_ 
     from
         Member member0_ 
     where
         member0_.id=?
-**ID: 1
-NAME: HelloA**
+ID: 1
+NAME: HelloA
 ```
 
 삭제는 em.remove() 로 `em.remove(findMember);` 처럼 찾은 애를 넣어주면 된다.
@@ -304,7 +300,7 @@ Hibernate:
         member0_.id=?
 Hibernate: 
     /* update
-        hellojpa.Member */ **update**
+        hellojpa.Member */ update
             Member 
         set
             name=? 
@@ -312,11 +308,10 @@ Hibernate:
             id=?
 ```
 
-update쿼리가 나갔다
+update쿼리가 나갔다.
 
-<!-- 결과: 
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/37ee1251-384c-4402-805d-7eca1d41b869/Untitled.png) -->
+결과:   
+![image](https://user-images.githubusercontent.com/86641773/157887456-dd1dadea-c5c5-4eb2-a111-6fc18ae2f2f3.png)
 
 ➡️ JPA를 통해서 엔티티를 가져오면 JPA가 관리를 한다. 트랜잭션을 커밋하는 시점에 변경이 되었는지 안되었는지 체크를 해서 변경사항이 있으면? 업데이트 쿼리를 생성한다. 
 
