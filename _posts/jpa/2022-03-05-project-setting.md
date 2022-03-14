@@ -22,7 +22,11 @@ Maven선택 후 이름 지정
 - **ArtifactId**: jpa-basic1
 - **Version**: 1.0-SNAPSHOT
 
-#### groupId, ArtifactId, version 설명
+
+<details> 
+<summary>groupId, ArtifactId, version 설명</summary> 
+
+#### groupId, ArtifactId, version
 
 **groupId**  
 > groupId uniquely identifies your project across all projects. A group ID should follow Java's package name rules. This means it starts with a reversed domain name you control. For example, org.apache.maven, org.apache.commons Maven does not enforce this rule. There are many legacy projects that do not follow this convention and instead use single word group IDs. However, it will be difficult to get a new single word group ID approved for inclusion in the Maven Central repository. You can create as many subgroups as you want. A good way to determine the granularity of the groupId is to use the project structure. That is, if the current project is a multiple module project, it should append a new identifier to the parent's groupId. For example, org.apache.maven, org.apache.maven.plugins, org.apache.maven.reporting  
@@ -58,12 +62,17 @@ ex) org.apache.maven, org.apache.maven.plugins, org.apache.maven.reporting
 
 출처: [https://junghn.tistory.com/entry/SPRINGMaven-프로젝트-groupId-artifactId-version-이란](https://junghn.tistory.com/entry/SPRINGMaven-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-groupId-artifactId-version-%EC%9D%B4%EB%9E%80)[코딩 시그널]
 
+</details>
+  
+<br><br>
 
 ## 의존 설정(Dependencies)
----
 우선 Hibernate 를 추가해줄 것인데, 제일 최근 버전은 아래 Hibernate 페이지에서 확인할 수 있다.  
-![image](https://user-images.githubusercontent.com/86641773/157887873-5eb57453-817c-4495-8227-0fd24e4bc23a.png)  
-### Hibernate 개념
+
+<details>
+
+<summary>Hibernate 개념</summary>
+
 #### Hibernate ORM
 Hibernate ORM은 **자바 언어를 위한 객체 관계 매핑 프레임워크**이다.
 
@@ -89,31 +98,29 @@ Hibernate ORM은 **자바 언어를 위한 객체 관계 매핑 프레임
 
 출처: [https://onecellboy.tistory.com/349](https://onecellboy.tistory.com/349)
 
+</details>
 
-![[https://hibernate.org/](https://hibernate.org/)  ](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/735329a0-6385-4801-9c3d-6e521d74ecab/Untitled.png)
+![image](https://user-images.githubusercontent.com/86641773/157887873-5eb57453-817c-4495-8227-0fd24e4bc23a.png)  
 
-[https://hibernate.org/](https://hibernate.org/)  
 
-- Hibernate 버전을 선택할 때 참고할 점
+
+<details>
+<summary>Hibernate 버전을 선택할 때 참고할 점</summary>
 
 결국 Spring과 엮이게 되있어서 Spring 사이트에 들어가서 reference를 보는 게 좋음
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e8fe6f4c-2a88-4d92-bb5a-512c9a3c9423/Untitled.png)
-
+<img width="641" alt="image" src="https://user-images.githubusercontent.com/86641773/158188372-94195d41-fac6-44dc-827b-86bfad8c085a.png">  
 Spring > project > spring Boot 선택
-
 내가 쓸 스프링 부트 버전에 Reference Doc.을 한 번 살펴본다.
 
-![[https://spring.io/projects/spring-boot#learn](https://spring.io/projects/spring-boot#learn)](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/01dd614b-6b4a-479f-9dd2-6d5c06e2a55a/Untitled.png)
-
-[https://spring.io/projects/spring-boot#learn](https://spring.io/projects/spring-boot#learn)
-
+<img width="395" alt="image" src="https://user-images.githubusercontent.com/86641773/158188462-9e57077f-3452-42e1-a987-851eabc45a92.png">   
 맨 아래 보면 Dependency Versions가 있다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b57e89bf-ffba-4ea3-825f-6a10a7cca8c7/Untitled.png)
-
+<img width="757" alt="image" src="https://user-images.githubusercontent.com/86641773/158188529-c98dff17-01c2-4052-bb85-20a0fae34457.png">  
 예를 들어 2.6.2 버전은 hibernate-entitymanager라이브러리를 쓸 때 라이브러리는 5.6.3.Final이 적합하단 뜻이다.
 
+</details>
+  
+<br><br>
 
 **pom.xml에 코드 작성**
 
@@ -157,19 +164,19 @@ entitymanager와 h2 database를 추가해준다.
 
 이때 다운 받았던 H2 데이터 베이스 버전은 일치해야한다.
 
-![H2-database 다운 받았던 곳](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e35007c4-797c-4654-bd1a-d82248e54a33/Untitled.png)
+
+<img width="222" alt="image" src="https://user-images.githubusercontent.com/86641773/158189328-0ced05c2-5ff8-485d-93ce-983fd61a6368.png">
 
 H2-database 다운 받았던 곳
 
 ## JPA 설정하기 - persistence.xml
 
----
-
 JPA설정 파일인 persistence.xml을 만들어준다.
 
 **persistence파일은 정해진 위치에 있어야한다. →  /META-INF/persistence.xml** 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c146a260-6b32-4ca2-bd13-af46a917d498/Untitled.png)
+<img width="196" alt="image" src="https://user-images.githubusercontent.com/86641773/158189460-1e20e46f-b4da-402a-a1e6-f815778aa754.png">  
+
 
 **persistence.xml 파일 생성**
 
@@ -217,14 +224,22 @@ JPA설정 파일인 persistence.xml을 만들어준다.
         
         예) H2: org.hibernate.dialect.H2Dialect / Oracle10g : org.hibernate.dialect.Oracle10gDialect 등, hibernate는 40가지 이상의 방언을 지원한다.
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1949dd43-565a-4163-9c08-c394449a45da/Untitled.png)
+        <img width="565" alt="image" src="https://user-images.githubusercontent.com/86641773/158189879-a9e057e4-b79b-45ad-ae23-47dc14e1ab0e.png">
+
         
 
-**옵션**
-[hibernate.hbm2ddl.auto 속성](https://www.notion.so/40cbc1f193ea4dfcb86c78943f81dda8)
+### hibernate.hbm2ddl.auto 속성
+| 옵션 | 설명 |
+| ---- | ---- |
+| create | DROP + CREATE 기존 테이블을 삭제하고 새로 생성한다. |
+| create-drop | DROP + CREATE + DROPcreate 속성에 추가로 애플리케이션을 종료할 때 생성한 DDL을 제거한다. |
+| update | 데이터베이스 테이블과 엔티티 매핑정보를 비교해서 변경 사항만 수정한다. |
+| validate | 데이터베이스 테이블과 엔티티 매핑정보를 비교해서 차이가 있으면 경고를 남기고 애플리케이션을 실행하지 않는다.이 옵션은 DDL을 수정하지 않는다. |
+| none | 스키마 자동 생성 기능을 사용하지 않는다.hibernate.hbm2ddl.auto 속성을 삭제한 것과 동일하다. |
 
+<br><br>
 
-> **🗒️ 추천 전략**
-개발 초기 단계 : create 또는 update
-테스트 서버 : update 또는 validate
-운영 서버 : validate 또는 none
+#### 🗒️ 추천 전략
+- 개발 초기 단계 : create 또는 update
+- 테스트 서버 : update 또는 validate
+- 운영 서버 : validate 또는 none
