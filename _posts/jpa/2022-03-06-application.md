@@ -1,6 +1,6 @@
 ---
 title:  "어플리케이션 개발"
-excerpt: ""
+excerpt: "JPA 구동 방식"
 toc: true
 toc_sticky: true
 toc_label: "목차"
