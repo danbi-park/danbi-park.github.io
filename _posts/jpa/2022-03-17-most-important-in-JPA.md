@@ -25,7 +25,10 @@ JPA를 쓰게 되면 먼저 **엔티티 매니저 팩토리**와 **엔티티 매
   
 한 애플리케이션을 예를 들면 고객의 요청이 들어올 때 마다 entity manager factory를 통해서 entitymanager를 생성한다. 또 새로운 요청이 들어오면 entity manager를 생성하고 그게 내부적으로 데이터 베이스 커넥션을 사용해서 DB를 사용하게 된다.
 
+<br>
+
 ## 영속성 컨텍스트
+---
 - JPA를 이해하는데 가장 중요한 용어
 - “엔티티를 영구 저장하는 환경”이라는 뜻
 - EntityManager.persist(entity); -> 이 persist method는 사실 db에 저장하는게 아님, 엔티티를 **영속성 컨텍스트**라는 곳에 저장하는 거임!
@@ -39,7 +42,10 @@ JPA를 쓰게 되면 먼저 **엔티티 매니저 팩토리**와 **엔티티 매
   
 엔티티 매니저를 생성하면 그 안에 1대1로  persistenceContext가 생성이 됨
 
+<br>
+
 ## 엔티티의 생명주기 간단하게 보기
+---
 - 비영속 (new/transient)  
   영속성 컨텍스트와 전혀 관계가 없는 **새로운** 상태
 - 영속 (managed)  
@@ -99,6 +105,4 @@ em.detach(member);
 em.remove(member);
 ```
 remove는 DB에 삭제를 요청한 상태임
-
-<br><br>
 
