@@ -15,12 +15,16 @@ last_modified_at: 2022-03-20
 
 이 영속성 컨텍스트는 application과 db 사이의 중간 계층으로 볼 수 있는데 중간에 이게 있으면 왜 좋을까? 
 
+<br>
+
 # 영속성 컨텍스트의 이점
 - 1차 캐시
 - 동일성(identity) 보장
 - 트랜잭션을 지원하는 쓰기 지연(transactional write-behind)
 - 변경 감지(Dirty Checking)
 - 지연 로딩(Lazy Loading)
+
+<br><br>
 
 ## 1차 캐시 - 1차 캐시에서 엔티티 조회할 수 있다.
 ---
@@ -99,7 +103,7 @@ findMember2번 부터는 1차캐시에서 조회하기 때문!!!
 
 </details>
 
-<br>
+<br><br>
 
 ## 영속 엔티티의 동일성 보장해준다.
 ---
@@ -116,7 +120,7 @@ System.out.println(a == b); //동일성 비교 true
 
 1차 캐시로 반복 가능한 읽기(REPEATABLE READ) 등급의 트랜잭션 격리 수준을 데이터베이스가 아닌 애플리케이션 차원에서 제공.
 
-<br>
+<br><br>
 
 ## 엔티티 등록 시, 트랜잭션을 지원하는 쓰기 지연
 ---
@@ -170,3 +174,82 @@ transaction.commit();
 Hibernate 의존성 중에 버퍼링 같은 기능으로 jdbc.batch가 있는데,   
 `<property name="hibernate.jdbc.batch_size" value="10" />`   
 얘가 지정한 사이즈 만큼 모아서 데이터 베이스에 한 방에 네트워크로 쿼리문을 보내고 DB를 커밋한다. 
+
+<br><br>
+
+## 엔티티 수정시, 변경 감지를 한다.
+---
+```java
+EntityManager em = emf.createEntityManager();
+EntityTransaction transaction = em.getTransaction();
+transaction.begin(); // [트랜잭션] 시작
+
+// 영속 엔티티 조회
+Member memberA = em.find(Member.class, "memberA");
+
+// 영속 엔티티 데이터 수정
+memberA.setUsername("hi");
+memberA.setAge(10);
+
+//em.update(member) 이런 코드가 있어야 하지 않을까?
+transaction.commit(); // [트랜잭션] 커밋
+```
+
+memberA의 이름과 나이를 바꿔보자, 그럼 바꾼 것을 반영해야하지 않을까? 뭐 em.persist()나 update같은 걸로?
+
+No! 
+
+> JPA의 목적은 객체를 마치 자바 컬렉션처럼 다루는 것!
+
+보통 리스트나 컬렉션에서 갓을 꺼낸 후 값을 변경하고 다시 컬렉션에 집어 넣지 않는 것처럼 후처리?를 안해줘도 된다. 
+
+set을 이용해 값을 변경해주고 실행해주면 별도의 명령어 없이도 자동으로 update쿼리가 날라간다.
+
+
+### Dirty Checking 
+이렇게 할 수 있는 이유는 바로 **Dirty Checking** 덕분이다.
+> 여기서 Dirty란 "상태의 변화가 생김" 정도로 이해하자.  
+즉, Dirty Checking은 상태 변경 검사 라는 뜻이다.
+
+**Dirty Checking의 메카니즘**
+
+![](./images/2022-03-21-23-52-10.png)  
+
+1. 커밋을 하면 내부적으로 flush가 호출된다.
+2. 엔티티와 스냅샷을 비교.
+    - 스냅샷 -> 1차 캐시에 들어온 값의 최초 조회 상태
+3. 변경 사항이 있다면 update sql을 생성해 쓰기 지연 SQL 저장소에 저장.
+4. SQL문을 DB에 반영하고 flush()
+5. commit;
+
+JPA에서는 트랜잭션이 끝나는 시점에 변화가 있는 모든 엔티티 객체를 데이터베이스에 자동으로 반영해준다.
+
+이때 변화가 있다의 기준은 최초 조회 상태이다.
+
+JPA에서는 엔티티를 조회하면 해당 엔티티의 조회 상태 그대로 스냅샷을 만들어놓는다.   
+그리고 **트랜잭션이 끝나는 시점에는 이 스냅샷과 비교해서 다른점이 있다면 Update Query를 데이터베이스로 전달한다.**
+
+당연히 이런 상태 변경 검사의 대상은 **영속성 컨텍스트가 관리하는 엔티티에만 적용**된다.
+
+- detach된 엔티티 (준영속)
+- DB에 반영되기 전 처음 생성된 엔티티 (비영속)
+
+등 준영속/비영속 상태의 엔티티는 Dirty Checking 대상에 포함되지 않는다.
+즉, 값을 변경해도 데이터베이스에 반영되지 않는다.
+
+Dirty checking 출처 : https://jojoldu.tistory.com/415
+
+<br><br>
+
+## 엔티티 삭제
+---
+
+```java
+//삭제 대상 엔티티 조회
+Member memberA = em.find(Member.class, "memberA");
+em.remove(memberA); //엔티티 삭제
+```
+엔티티를 찾아와서 remove!
+
+commit 시점에 delete 쿼리문이 나간다.
+
