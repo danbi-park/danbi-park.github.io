@@ -1,5 +1,5 @@
 ---
-title:  "컴포넌트"
+title:  "컴포넌트의 종류!"
 excerpt: "클래스형 컴포넌트 vs 함수형 컴포넌트"
 toc: true
 toc_sticky: true
