@@ -12,7 +12,7 @@ tags:
 last_modified_at: 2022-04-11
 ---
 
-- [x] tomcat / JDK / JAVA 설치 
+- [x] tomcat / JDK 설치 
 - [x] JAVA 버전 확인
 - [x] JAVA 환경 변수 설정
 - [x] DB 연결
@@ -91,7 +91,7 @@ etc/profile은 실행시 제일 먼저 열어보는 파일임
 
 바본가...계속 java -jar로 실행하고 있었다.
 
-다시 startup.sh하고 
+다시 ./startup.sh하고 
 
 
 ## 로그 확인 명령어 
