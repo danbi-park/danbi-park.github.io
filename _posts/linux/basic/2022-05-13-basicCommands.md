@@ -1,0 +1,1 @@
+https://velog.io/@devmin/%EB%A6%AC%EB%88%85%EC%8A%A4-%EC%89%98-%EA%B8%B0%EB%B3%B8-%EB%AA%85%EB%A0%B9%EC%96%B4Basic-Shell-Commands
