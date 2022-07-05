@@ -32,7 +32,7 @@ persistence.xml에 설정되어 있는 properties중에 hibernate ddl 관련 pro
 ```
 | 옵션  | 설명 |
 | --- | --- | 
-| create | 기존테이블 삭제 후 다시 생성 (DROP + CREATE)  |
+| create | 기존테이블 삭제 후 다시 생성 (DROP하고 CREATE하는 거임)  |
 | create-drop | create와 같으나 종료시점에 테이블을 삭제함 DROP |
 | update | 변경된 부분만 반영(운영DB에는 사용하면 안됨) <br> - entity에 다가 컬럼 추가하면 alter table 해줌 <br> - 삭제는 안됨 !! |
 | validate | 엔티티와 테이블이 정상 매핑되었는지만 확인 <br> - ex) 새로운 컬럼 추가 후 실행하면 컬럼이 없다고 표시함  |
@@ -53,3 +53,14 @@ dialect -> 방언을 뜻한다.
 - 어느 정도 개발이 진행되고 테스트 서버에서는 update또는 validate를 사용한다.
 - 스테이징과 운영 서버는 validate또는 none으로 설정해놓는다.
 
+하지만 테스트 서버에서도 none으로 설정해놓고 만약 수정할 테이블이 있으면   
+먼저 테스트 서버에서 직접 스크립트로 수정 후
+운영 서버에 적용 하는 것을 권장한다.
+
+## DDL 생성 기능
+- 제약 조건 추가 : 회원 이름은 필수, 10자 초과 x
+  - @Column(nullable = false, length =10, unique= true)
+- 유니크 제약조건 추가
+  - @Table(uniqueConstraints = {@UniqueConstraint(name = "NAME_AGE_UNIQUE",
+columnNames = {"NAME","AGE"})})
+- DDL 생성 기능은 DDL을 자동 생성할 때만 사용되고 JPA의 실행 로직에는 영향을 주지 않는다. 
